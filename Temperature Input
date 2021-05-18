@@ -1,0 +1,32 @@
+<>
+import React, { Component } from 'react';
+import BoilingVerdict from './BoilingVerdict';
+import { celtofarenhite, converter, farenhitetoCel } from './converter';
+import TempInput from './TempInput';
+
+export default class Calculator extends Component {
+    state={
+        temperature: '',
+        scaling: '',
+    };
+    handleChange = (e,scaling)=>{
+        this.setState({
+          temperature: e.target.value,
+          scaling 
+        });
+    };
+    render() {
+        const{temperature,scaling}=this.state;
+        const celcius = scaling==="f" ? converter(temperature, farenhitetoCel ):temperature;
+        const farenhite = scaling==="c" ? converter(temperature, celtofarenhite ):temperature;
+        
+        return (
+            <div>
+                <TempInput scal="c"  temperature={celcius}  onTempChange={this.handleChange}/>
+                <TempInput scal="f"  temperature={farenhite} onTempChange={this.handleChange}/>
+                <BoilingVerdict celcius={parseFloat(temperature)}/>
+            </div>
+        )
+    }
+}
+<>
